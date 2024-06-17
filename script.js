@@ -1,3 +1,40 @@
+document.getElementById('doctor-form').onsubmit = function(e) {
+    e.preventDefault();
+    let nome = document.getElementById('nome_auth').value;
+    let cognome = document.getElementById('cognome').value;
+    let telefono = document.getElementById('telefono').value;
+    let sesso = document.getElementById('sesso').value;
+    let indirizzo = document.getElementById('indirizzo').value;
+
+    const nom_cog = capitalize(nome +" "+cognome)
+    const dati = { "nome": nom_cog, "tel":telefono, "sesso":sesso, "indirizzo": indirizzo}
+    localStorage.setItem("datiMedicoFatturazioni", JSON.stringify(dati));
+    
+    document.getElementById("auth").style.display = "none";
+    document.getElementById("page-container").style.display = "block";
+    
+}
+
+const datiMedico = JSON.parse(localStorage.getItem("datiMedicoFatturazioni"));
+console.log(datiMedico)
+
+if (datiMedico){
+    const dott = document.getElementById("dott");
+    const via = document.getElementById("via-int");
+    const tel = document.getElementById("tel-int");
+
+    if(datiMedico.sesso==="F"){
+        dott.innerText = "Dott.ssa " + datiMedico.nome;
+    }else{
+        dott.innerText = "Dottore " + datiMedico.nome;
+    }
+    via.innerText = datiMedico.indirizzo;
+    tel.innerText = "Tel. " + datiMedico.tel
+    document.getElementById("auth").style.display = "none";
+    document.getElementById("page-container").style.display = "block";
+
+}
+
 const data=new Date();
 let day = String(data.getDate());
 let month = String(data.getMonth()+1);
@@ -28,12 +65,10 @@ print_btn.onclick = () => {
     check_list.push(check_str(document.getElementById("cf-input")));
     check_list.push(check_str(document.getElementById("textarea")));
 
-    console.log(document.getElementById("textarea").value)
+    const hasError = check_list.some(check => check === false);
 
-    
-    if( ! false in check_list ){
+    if( !hasError ){
         print();
-
     }
 };
 
@@ -46,7 +81,11 @@ function check_str(input){
         }
         return false
     }else{
-        input.classList.remove("null");
+        if(input.id==="textarea"){
+            document.getElementById("table").classList.remove("null");
+        }else{
+            input.classList.remove("null");
+        }
         return true
     }
 }
@@ -96,15 +135,20 @@ const print = () =>{
     document.getElementById("fatt_n").innerHTML = `<input id="fatt_n_input"></input> /`
     document.getElementById("fatt_n_input").value = n_fattura_val;
 
-    document.getElementById("nome").innerHTML = `<input id="nome-input" placeholder="nome"></input>`
-    document.getElementById("via").innerHTML = `<input id="via-input" placeholder="via"></input>`
-    document.getElementById("città").innerHTML = `<input id="citta-input" placeholder="città"></input>`
-    document.getElementById("cf").innerHTML = `<input id="cf-input" placeholder="codice fiscale"></input>`
+    document.getElementById("nome").innerHTML = `<input class="input" id="nome-input" placeholder="nome"></input>`
+    document.getElementById("via").innerHTML = `<input class="input" id="via-input" placeholder="via"></input>`
+    document.getElementById("città").innerHTML = `<input class="input" id="citta-input" placeholder="città"></input>`
+    document.getElementById("cf").innerHTML = `<input class="input" id="cf-input" placeholder="codice fiscale"></input>`
 
     document.getElementById("pagamento_p").innerHTML =`Pagamento: <select id="tipo_pagamento"class="near"><option value="POS">POS</option><option value="Contanti">Contanti</option></select>`;
     document.getElementById("tipo_pagamento").value = pagamento_val;
     document.getElementById("totale").innerHTML = `<input id="tot-input" placeholder="totale"></input>`;
     document.getElementById("tot-input").value = totale_val;
+
+    document.getElementById("nome-input").value=nome_val;
+    document.getElementById("via-input").value=via_val;
+    document.getElementById("citta-input").value=città_val;
+    document.getElementById("cf-input").value=cf_val;
 
     print_btn.style.display="block";
 

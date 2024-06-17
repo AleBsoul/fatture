@@ -4,47 +4,80 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css">
-        <button id="print">Stampa</button>
-        <section id="page">
-            <header id="intestazione">
-                <p id="dettagli">
-                    <b id="dott">Dott.ssa Silvana Gabiazzi</b><br>
-                    Specialista in Pediatria<br>
-                    Via Bizet 5 Pioltello MI<br>
-                    Tel. 3887295747<br>
-                </p>
-            </header>
-            <section id="fattura">
-                <p id="fatt_n_p">Fattura N°: <b id="fatt_n"><input id="fatt_n_input"></input> / </b><p ><b id="anno_fattura"></b></p></p>
-                <p id="data_p">Data:<b id="data"></b></p>
-            </section>
+    <body>
+        <div class="container" id="auth">
+            <h2>Dati medico</h2>
+            <form id="doctor-form">
+                <div class="form-group">
+                    <label for="nome_auth">Nome</label>
+                    <input type="text" id="nome_auth" name="nome_auth" required>
+                </div>
+                <div class="form-group">
+                    <label for="cognome">Cognome</label>
+                    <input type="text" id="cognome" name="cognome" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Telefono</label>
+                    <input type="tel" id="telefono" name="telefono" required>
+                </div>
+                <div class="form-group">
+                    <label for="sesso">Sesso</label>
+                    <select id="sesso" name="sesso" required>
+                        <option value="" disabled selected>Seleziona il sesso</option>
+                        <option value="M">Maschio</option>
+                        <option value="F">Femmina</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="indirizzo">Indirizzo dell'Ambulatorio</label>
+                    <input type="text" id="indirizzo" name="indirizzo" required>
+                </div>
+                <button type="submit" class="btn">Invia</button>
+            </form>
+        </div>
+        <div id="page-container" style="display:none">
+            <button id="print">Stampa</button>
+            <div id="page">
+                <header id="intestazione">
+                    <p id="dettagli">
+                        <b id="dott"></b><br>
+                        <p>Specialista in Pediatria</p>
+                        <p id="via-int"></p>
+                        <p id="tel-int"></p>
+                    </p>
+                </header>
+                <div id="fattura">
+                    <p id="fatt_n_p">Fattura N°: <b id="fatt_n"><input id="fatt_n_input" class="input"></input> / </b><p ><b id="anno_fattura"></b></p></p>
+                    <p id="data_p">Data:<b id="data"></b></p>
+                </div>
 
-            <section id="cliente" class="cliente_parent">
-                <p class="near">Cliente:</p>
-                <section id="dati_cliente" class="near">
-                    <p><b id="nome"><input id="nome-input" placeholder="nome"></input></b></p>
-                    <p><b id="via"><input id="via-input" placeholder="via"></input></b></p>
-                    <p><b id="città"><input id="citta-input" placeholder="città"></input></b></p>
-                    <p><b id="cf"><input id="cf-input" placeholder="codice fiscale"></input></b></p>
-                </section>
-            </section>
+                <div id="cliente" class="cliente_parent">
+                    <p class="near">Cliente:</p>
+                    <div id="dati_cliente" class="near">
+                        <p><b id="nome"><input class="input" id="nome-input" placeholder="nome"></input></b></p>
+                        <p><b id="via"><input class="input" id="via-input" placeholder="via"></input></b></p>
+                        <p><b id="città"><input class="input" id="citta-input" placeholder="città"></input></b></p>
+                        <p><b id="cf"><input class="input" id="cf-input" placeholder="codice fiscale"></input></b></p>
+                    </div>
+                </div>
 
-            <section id="descrizione">
-                <p class="near"><i>Descrizione prestazioni</i></p>
-                <p class="near" id="label_importo"><i>Importo</i></p>
-                <table id="table">
-                    <tr>
-                        <td><textarea id="textarea"></textarea></td>
-                        <td id="importo_tabella"style="position:absolute;margin-top:0px;right: 60px;"></td>
-                    </tr>
-                </table>
-            </section>
-            <section id="dati_pagamento">
-                <p id="pagamento_p" class="near">Pagamento: <select id="tipo_pagamento" class="near"><option value="POS">POS</option><option value="Contanti">Contanti</option></select></p>
-                <p id="tot_p" class="near">Totale fattura(Euro):<b id="totale"><input id="tot-input" placeholder="totale"></input></b></p>
-            </section>
-            <footer>Esente IVA ai sensi dell'art. 10 comma 1 n.18 del D.P.R 633/1972 e successive modificazioni e soggetta alla vigente imposta di bollo</footer>
-        </section>
+                <div id="descrizione">
+                    <p class="near"><i>Descrizione prestazioni</i></p>
+                    <p class="near" id="label_importo"><i>Importo</i></p>
+                    <table id="table">
+                        <tr>
+                            <td><textarea id="textarea"></textarea></td>
+                            <td id="importo_tabella"style="position:absolute;margin-top:0px;right: 60px;"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="dati_pagamento">
+                    <p id="pagamento_p" class="near">Pagamento: <select id="tipo_pagamento" class="near"><option value="POS">POS</option><option value="Contanti">Contanti</option></select></p>
+                    <p id="tot_p" class="near">Totale fattura(Euro):<b id="totale"><input class="input" id="tot-input" placeholder="totale"></input></b></p>
+                </div>
+                <footer>Esente IVA ai sensi dell'art. 10 comma 1 n.18 del D.P.R 633/1972 e successive modificazioni e soggetta alla vigente imposta di bollo</footer>
+            </div>
+        </div>
         <script src='script.js'></script>
     </body>
     

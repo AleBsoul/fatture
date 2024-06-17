@@ -3,6 +3,72 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
+/* ======AUTH====== */
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    transform: translateX(calc(50vw - 50%)) translateY(calc(50vh - 50%));
+
+}
+.container h2 {
+    margin-top: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+.form-group {
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.form-group select {
+    padding: 10px;
+}
+.btn {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+.btn:hover {
+    background-color: #0056b3;
+}
+
+
+/* ========PAGE======== */
+
 #print{
     margin-left: auto;
     margin-right: auto;
@@ -123,7 +189,7 @@ textarea {
     width:50px;
 }
 
-input{
+.input{
     height:20px;
     border: 1px solid black;
     border-radius: 5px;
