@@ -1,3 +1,7 @@
+localStorage.clear()
+let datiMedico = JSON.parse(localStorage.getItem("datiMedicoFatturazioni"));
+
+
 document.getElementById('doctor-form').onsubmit = function(e) {
     e.preventDefault();
     let nome = document.getElementById('nome_auth').value;
@@ -9,14 +13,11 @@ document.getElementById('doctor-form').onsubmit = function(e) {
     const nom_cog = capitalize(nome +" "+cognome)
     const dati = { "nome": nom_cog, "tel":telefono, "sesso":sesso, "indirizzo": indirizzo}
     localStorage.setItem("datiMedicoFatturazioni", JSON.stringify(dati));
-    
+    datiMedico = JSON.parse(localStorage.getItem("datiMedicoFatturazioni"));
     document.getElementById("auth").style.display = "none";
-    document.getElementById("page-container").style.display = "block";
-    
+    document.getElementById("page-container").style.display = "block";    
 }
 
-const datiMedico = JSON.parse(localStorage.getItem("datiMedicoFatturazioni"));
-console.log(datiMedico)
 
 if (datiMedico){
     const dott = document.getElementById("dott");
