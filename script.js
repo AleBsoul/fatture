@@ -1,4 +1,7 @@
-let datiMedico = JSON.parse(localStorage.getItem("datiMedicoFatturazioni"));
+let datiMedico;
+try{
+    datiMedico = JSON.parse(localStorage.getItem("datiMedicoFatturazioni"));
+}catch{}
 
 function capitalize(text) {
     return text.toLowerCase().split(' ').map(word => 
@@ -23,6 +26,16 @@ document.getElementById('doctor-form').onsubmit = function(e) {
     main();  
 }
 
+document.getElementById("tot-input").addEventListener("input", function() {
+    const total_val = parseFloat(document.getElementById("tot-input").value).toFixed(2);
+    console.log(total_val)
+    if (!isNaN(total_val)){
+        document.getElementById("importo_tabella").innerText = total_val;  
+    }else{
+        document.getElementById("importo_tabella").innerText = ""
+    }
+});
+
 const main = () =>{
     if (datiMedico){
         const dott = document.getElementById("dott");
@@ -32,7 +45,7 @@ const main = () =>{
         if(datiMedico.sesso==="F"){
             dott.innerText = "Dott.ssa " + datiMedico.nome;
         }else{
-            dott.innerText = "Dottore " + datiMedico.nome;
+            dott.innerText = "Dott. " + datiMedico.nome;
         }
         via.innerText = datiMedico.indirizzo;
         tel.innerText = "Tel. " + datiMedico.tel
@@ -76,6 +89,13 @@ const main = () =>{
             }
         };
 
+        const edit_btn = document.getElementById("edit-data");
+        edit_btn.onclick = () => {
+            document.getElementById("auth").style.display = "block";
+        document.getElementById("page-container").style.display = "none";  
+        }
+
+
         function check_str(input){
             if (!input.value){
                 if(input.id==="textarea"){
@@ -116,9 +136,8 @@ const main = () =>{
 
             const totale_val = parseFloat(document.getElementById("tot-input").value).toFixed(2);
             document.getElementById("fatt_n").innerText = n_fattura_val+" /";
-            document.getElementById("importo_tabella").innerText=totale_val;
             print_btn.style.display="none";
-
+            edit_btn.style.display="none";
             document.getElementById("nome").innerText = capitalize(nome_val);
             document.getElementById("via").innerText = via_val
             document.getElementById("città").innerText = città_val
@@ -150,6 +169,8 @@ const main = () =>{
             document.getElementById("cf-input").value=cf_val;
 
             print_btn.style.display="block";
+            edit_btn.style.display="block";
+
 
         };
 

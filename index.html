@@ -36,15 +36,19 @@
             </form>
         </div>
         <div id="page-container" style="display:none">
-            <button id="print">Stampa</button>
+            <nav id="navbar">
+                <button id="print">Stampa</button>
+                <button id="edit-data">Modifica Dati</button>
+            </nav>
             <div id="page">
                 <header id="intestazione">
-                    <p id="dettagli">
-                        <b id="dott"></b><br>
-                        <p>Specialista in Pediatria</p>
-                        <p id="via-int"></p>
-                        <p id="tel-int"></p>
-                    </p>
+                    <div id="dettagli">
+                        <b></b><p class="datiDott" id="dott"></p></b>
+                        <p class="datiDott">Medico chirurgo</p>
+                        <p class="datiDott">Specialista in Pediatria</p>
+                        <p class="datiDott" id="via-int"></p>
+                        <p class="datiDott" id="tel-int"></p>
+                    </div>
                 </header>
                 <div id="fattura">
                     <p id="fatt_n_p">Fattura N°: <b id="fatt_n"><input id="fatt_n_input" class="input"></input> / </b><p ><b id="anno_fattura"></b></p></p>
